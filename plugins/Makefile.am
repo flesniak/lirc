@@ -130,6 +130,9 @@ zotac_la_SOURCES            = zotac.c
 
 plugin_LTLIBRARIES          += mplay.la
 mplay_la_SOURCES            = mplay.c
+
+plugin_LTLIBRARIES          += hid_irmp.la
+hid_irmp_la_SOURCES         = hid_irmp.c
 endif
 
 $(srcdir)/pluginlist.am:
