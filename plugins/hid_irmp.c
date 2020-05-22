@@ -31,6 +31,8 @@ enum hid_irmp_type {
 	NewIRCodeAvailable = 1
 };
 
+#define HID_IRMP_FLAG_REPEAT 1
+
 static struct hid_irmp_msg {
 	uint8_t type;
 	uint8_t protocol;
@@ -38,7 +40,6 @@ static struct hid_irmp_msg {
 	uint16_t command;
 	uint8_t flags;
 } msg;
-
 
 int check_usbid(uint16_t vendor,  uint16_t product)
 {
@@ -167,6 +168,9 @@ static int hid_irmp_decode(struct ir_remote* remote, struct decode_ctx_t* ctx)
 
 	if (!map_code(remote, ctx, 0, 0, 40, code, 0, 0))
 		return 0;
+
+	if (msg.flags & HID_IRMP_FLAG_REPEAT)
+		ctx->repeat_flag = 1;
 
 	return 1;
 }
