@@ -2079,7 +2079,7 @@ static int mywaitfordata(uint32_t maxusec)
 						tv = gap;
 				}
 			}
-			if (timerisset(&tv) || timerisset(&release_time)
+			if (timerisset(&tv)
 			    || reconnect
 			) {
 				ret = curl_poll((
